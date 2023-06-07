@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 @Service
-public class ConverterServiceImpl implements ConverterService{
+public class ConverterServiceImpl implements ConverterService {
 
     @Override
     public String convert(String text, ArrayList<String[]> from, ArrayList<String[]> to) {
@@ -38,6 +38,14 @@ public class ConverterServiceImpl implements ConverterService{
                     i++;
                 } else {
                     currentCharStr = String.valueOf(text.charAt(i));
+                }
+
+            } else if (text.charAt(i) == 'ц' || text.charAt(i) == 'Ц') {
+                if (i == 0 || text.charAt(i - 1) == ' ' || text.charAt(i - 1) == ',' || text.charAt(i - 1) == '.' || text.charAt(i - 1) == '!' || text.charAt(i - 1) == '?') {
+                    currentCharStr = (text.charAt(i) == 'ц') ? "s" : "S";
+
+                } else {
+                    currentCharStr = (text.charAt(i) == 'ц') ? "ts" : "Ts";
                 }
 
             } else {
